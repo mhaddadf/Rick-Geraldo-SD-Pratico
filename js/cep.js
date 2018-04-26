@@ -25,3 +25,15 @@ $( function() {
     });
 
 });
+$(document).ready(function () {
+
+  var $seuCampoCpf = $("#cpf");
+  var $telefone = $("#telefone");
+  var $celular = $("#celular");
+
+  $telefone.mask("00 0000 0000", {reverse: true});
+
+  $celular.mask("00 00000 0000", {reverse: true});
+
+  $seuCampoCpf.mask('000.000.000-00', {reverse: true});
+});
