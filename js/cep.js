@@ -52,6 +52,28 @@ $( function() {
 
 });
 
+function TestaCPF(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+  if (strCPF == "00000000000") return false;
+    
+  for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+  Resto = (Soma * 10) % 11;
+  
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+  
+  Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+  
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
+}
+
+
 $(document).ready(function () {
 
   var $seuCampoCpf = $("#cpf");
@@ -63,4 +85,16 @@ $(document).ready(function () {
   $celular.mask("00 00000 0000", {reverse: true});
 
   $seuCampoCpf.mask('000.000.000-00', {reverse: true});
+
 });
+
+function validar() {
+
+  var cpfSemMask = $("#cpf").val();
+
+  cpfSemMask = cpfSemMask.replace(".","").replace(".","").replace(".","").replace("-","");
+
+  if(!TestaCPF(cpfSemMask)) {
+    alert("Digite um cpf valido")
+  }
+}
