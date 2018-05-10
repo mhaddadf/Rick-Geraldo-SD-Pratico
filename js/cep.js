@@ -21,6 +21,7 @@ $( function() {
         $("#logradouro").val(ui.item.logradouro);
         $("#cidade").val(ui.item.cidade);
         $("#bairro").val(ui.item.bairro);
+        $("#uf").val(ui.item.uf);
       }
     });
 
@@ -45,8 +46,9 @@ $( function() {
       select: function( event, ui ) {
         // Alimenta os campos a partir do retorno do método remoto
         $("#logradouro").val(ui.item.logradouro);
-        $("#cidade").val(ui.item.cidade);
+        $("#cep").val(ui.item.cep);
         $("#bairro").val(ui.item.bairro);
+        $("#uf").val(ui.item.uf);
       }
     });
 

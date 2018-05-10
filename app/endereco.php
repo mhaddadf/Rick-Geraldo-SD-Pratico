@@ -26,7 +26,9 @@ class endereco extends baseClass {
         tb1.cidade_descricao as cidade,
         ifnull(tb2.bairro_descricao,'Centro') as bairro,
         ifnull(tb3.endereco_logradouro,'') as logradouro,
-        ifnull(tb3.endereco_cep,tb1.cidade_cep) as value
+        ifnull(tb3.endereco_cep,tb1.cidade_cep) as value,
+        ifnull(tb4.uf_sigla,'') as uf
+
         from
         cep.cidade tb1
         left join
@@ -35,6 +37,9 @@ class endereco extends baseClass {
         left JOIN
         cep.endereco tb3
         on tb2.bairro_codigo = tb3.bairro_codigo
+        left JOIN
+        cep.uf tb4
+        on tb4.uf_codigo = tb1.uf_codigo
         where (ifnull(tb3.endereco_cep,tb1.cidade_cep) like '%$term%') or (tb1.cidade_descricao like '%$term%')
         order by
         tb1.cidade_descricao,
